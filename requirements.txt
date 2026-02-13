@@ -1,3 +1,20 @@
-streamlit
-pandas
-openpyxl
+# Faculty Management System - Requirements
+
+# Core Framework
+streamlit>=1.28.0
+
+# Data Processing
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# PDF Generation
+reportlab>=4.0.0
+
+# Date/Time Handling (included in Python standard library, but listing for clarity)
+# datetime - built-in
+# json - built-in
+# hashlib - built-in
+# pathlib - built-in
+# io - built-in
+# re - built-in
+# os - built-in
