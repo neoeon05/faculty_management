@@ -109,7 +109,6 @@ def create_faculty_from_name(faculty_name, created_by="system"):
         'name': faculty_name,
         'gender': 'Other',  # Default
         'email': email,
-        'contact': 'N/A',  # Default contact
         'designation': 'Faculty',  # Default designation
         'batch': '',
         'biodata': 'Auto-created from bulk import',
@@ -1020,7 +1019,6 @@ def manage_faculties_page():
             name = st.text_input("Name *", max_chars=100)
             gender = st.selectbox("Gender *", ["", "Male", "Female", "Other"])
             email = st.text_input("Email *", max_chars=100)
-            contact = st.text_input("Contact Number *", max_chars=15, placeholder="e.g., +91-9876543210")
             designation = st.text_input("Designation *", max_chars=100, placeholder="e.g., Professor, Assistant Professor, Lecturer")
             batch = st.text_input("Batch", max_chars=50)
             biodata = st.text_area("Biodata", max_chars=1000)
@@ -1028,8 +1026,8 @@ def manage_faculties_page():
             submitted = st.form_submit_button("Add Faculty", type="primary")
             
             if submitted:
-                if not name or not gender or not email or not contact or not designation:
-                    st.error("Please fill all mandatory fields (Name, Gender, Email, Contact, Designation)")
+                if not name or not gender or not email or not designation:
+                    st.error("Please fill all mandatory fields (Name, Gender, Email, Designation)")
                 elif '@' not in email:
                     st.error("Please enter a valid email address")
                 else:
@@ -1041,7 +1039,6 @@ def manage_faculties_page():
                         'name': name,
                         'gender': gender,
                         'email': email,
-                        'contact': contact,
                         'designation': designation,
                         'batch': batch,
                         'biodata': biodata,
@@ -1069,7 +1066,6 @@ def manage_faculties_page():
                         'Name': f['name'],
                         'Gender': f['gender'],
                         'Email': f['email'],
-                        'Contact': f.get('contact', 'N/A'),
                         'Designation': f.get('designation', 'Faculty'),
                         'Batch': f.get('batch', ''),
                         'Biodata': f.get('biodata', ''),
@@ -1102,7 +1098,6 @@ def manage_faculties_page():
                                                 index=["Male", "Female", "Other"].index(faculty['gender']), 
                                                 key=f"gender_{fid}")
                             email = st.text_input("Email *", value=faculty['email'], key=f"email_{fid}")
-                            contact = st.text_input("Contact Number *", value=faculty.get('contact', ''), key=f"contact_{fid}")
                             designation = st.text_input("Designation *", value=faculty.get('designation', 'Faculty'), key=f"designation_{fid}")
                         
                         with col2:
@@ -1119,7 +1114,7 @@ def manage_faculties_page():
                             delete_btn = st.form_submit_button("Delete Faculty", type="secondary")
                         
                         if update_btn:
-                            if not name or not gender or not email or not contact or not designation:
+                            if not name or not gender or not email or not designation:
                                 st.error("Please fill all mandatory fields")
                             else:
                                 all_faculties = load_json(FACULTIES_FILE, {})
@@ -1127,7 +1122,6 @@ def manage_faculties_page():
                                     'name': name,
                                     'gender': gender,
                                     'email': email,
-                                    'contact': contact,
                                     'designation': designation,
                                     'batch': batch,
                                     'biodata': biodata
@@ -1167,7 +1161,6 @@ def manage_faculties_page():
                         st.markdown(f"**ID:** {faculty['id']}")
                         st.markdown(f"**Gender:** {faculty['gender']}")
                         st.markdown(f"**Email:** {faculty['email']}")
-                        st.markdown(f"**Contact:** {faculty.get('contact', 'N/A')}")
                         st.markdown(f"**Designation:** {faculty.get('designation', 'Faculty')}")
                     
                     with col2:
@@ -1185,7 +1178,6 @@ def manage_faculties_page():
                                 'Name': faculty['name'],
                                 'Gender': faculty['gender'],
                                 'Email': faculty['email'],
-                                'Contact': faculty.get('contact', 'N/A'),
                                 'Designation': faculty.get('designation', 'Faculty'),
                                 'Batch': faculty.get('batch', ''),
                                 'Biodata': faculty.get('biodata', ''),
