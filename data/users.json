@@ -1,0 +1,16 @@
+{
+  "admin": {
+    "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "is_admin": true,
+    "email": "admin@system.com",
+    "full_name": "System Administrator"
+  },
+  "training-I": {
+    "password": "ea73aee3ecacb2ec06a9fadf43844ca90742d205798f79d66238fddbb1201c71",
+    "is_admin": false,
+    "email": "aaotrg1.naaa@cag.gov.in",
+    "full_name": "Training-I",
+    "created_at": "2026-02-13T05:07:13.617552",
+    "created_by": "admin"
+  }
+}
